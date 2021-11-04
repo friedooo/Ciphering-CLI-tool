@@ -1,35 +1,38 @@
-const { stdin, stdout, stderr } = process;
+// const { stdin, stdout, stderr } = process;
 
-let args = process.argv;
+// let args = process.argv;
 
-const checkArgsLength = (arr) => {
-  if (arr.length === 8) {
-    console.log("количество аргументов сходится");
-  }
-};
+// const checkArgsLength = (arr) => {
+//   if (arr.length === 8) {
+//     console.log("количество аргументов сходится");
+//   }
+// };
 
-const getDataObj = (arr) => {
-  let dataObj = {
-    algo: "",
-    inputFile: "",
-    outputFile: "",
-  };
+// const getDataObj = (arr) => {
+//   let dataObj = {
+//     algo: "",
+//     inputFile: "",
+//     outputFile: "",
+//   };
 
-  arr.forEach((elem, i) => {
-    if (elem === "-c" || elem === "--config") {
-      dataObj.algo = arr[i + 1];
-    } else if (elem === "-i" || elem === "--input") {
-      dataObj.inputFile = arr[i + 1];
-    } else if (elem === "-o" || elem === "--output") {
-      dataObj.outputFile = arr[i + 1];
-    }
-  });
+//   arr.forEach((elem, i) => {
+//     if (elem === "-c" || elem === "--config") {
+//       dataObj.algo = arr[i + 1];
+//     } else if (elem === "-i" || elem === "--input") {
+//       dataObj.inputFile = arr[i + 1];
+//     } else if (elem === "-o" || elem === "--output") {
+//       dataObj.outputFile = arr[i + 1];
+//     }
+//   });
 
-  return dataObj;
-};
+//   return dataObj;
+// };
 
-checkArgsLength(args);
-console.log(getDataObj(args));
+// checkArgsLength(args);
+// console.log(getDataObj(args));
+
+const { caesarEncoder } = require("./cipherHandlers");
+console.log(caesarEncoder(`This is secret. Message about "_" symbol!йййй`));
 
 // console.log(process.stderr.write("что-то пошло не так"));
 
