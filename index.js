@@ -31,8 +31,51 @@
 // checkArgsLength(args);
 // console.log(getDataObj(args));
 
-const { caesarEncoder } = require("./cipherHandlers");
-console.log(caesarEncoder(`This is secret. Message about "_" symbol!йййй`));
+const { RotEncoder } = require("./cipherHandler");
+console.log("encoding rot test");
+console.log(
+  RotEncoder(`This is secret. Message about "_" symbol!`, 1) ===
+    'Uijt jt tfdsfu. Nfttbhf bcpvu "_" tzncpm!'
+);
+console.log(
+  RotEncoder(`This is secret. Message about "_" symbol!`, 4) ===
+    'Xlmw mw wigvix. Qiwweki efsyx "_" wcqfsp!'
+);
+console.log(
+  RotEncoder(`This is secret. Message about "_" symbol!`, 7) ===
+    'Aopz pz zljyla. Tlzzhnl hivba "_" zftivs!'
+);
+console.log(
+  RotEncoder(`This is secret. Message about "_" symbol!`, 8) ===
+    'Bpqa qa amkzmb. Umaaiom ijwcb "_" agujwt!'
+);
+console.log(
+  RotEncoder(`This is secret. Message about "_" symbol!`, 13) ===
+    'Guvf vf frperg. Zrffntr nobhg "_" flzoby!'
+);
+
+console.log("decoding rot test");
+
+console.log(
+  RotEncoder(`This is secret. Message about "_" symbol!`, -1) ===
+    'Sghr hr rdbqds. Ldrrzfd zants "_" rxlank!'
+);
+console.log(
+  RotEncoder(`This is secret. Message about "_" symbol!`, -4) ===
+    'Pdeo eo oaynap. Iaoowca wxkqp "_" ouixkh!'
+);
+console.log(
+  RotEncoder(`This is secret. Message about "_" symbol!`, -7) ===
+    'Mabl bl lxvkxm. Fxlltzx tuhnm "_" lrfuhe!'
+);
+console.log(
+  RotEncoder(`This is secret. Message about "_" symbol!`, -8) ===
+    'Lzak ak kwujwl. Ewkksyw stgml "_" kqetgd!'
+);
+console.log(
+  RotEncoder(`This is secret. Message about "_" symbol!`, -13) ===
+    'Guvf vf frperg. Zrffntr nobhg "_" flzoby!'
+);
 
 // console.log(process.stderr.write("что-то пошло не так"));
 
