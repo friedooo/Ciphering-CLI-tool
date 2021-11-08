@@ -1,6 +1,22 @@
-require("./encodersTest");
+const { stdin, stdout, stderr } = process;
+const fs = require("fs");
+const { pipeline } = require("stream");
 
-// const { stdin, stdout, stderr } = process;
+require("./encodersTest");
+const { rotCoder } = require("./cipherHandler");
+const rotTransform = require("./transformStreams/rotTransform");
+
+const readableStream = fs.createReadStream("./files/input.txt", "utf8");
+const writeableStream = fs.createWriteStream("./files/output.txt");
+const transformStream = new rotTransform(rotCoder, 1);
+
+pipeline(readableStream, transformStream, writeableStream, (err) => {
+  if (err) {
+    process.stderr.write("pipeline failed", err);
+  } else {
+    process.stdout.write("pipeline success");
+  }
+});
 
 // let args = process.argv;
 
@@ -43,4 +59,8 @@ require("./encodersTest");
 //   stdout.write(data);
 //   process.exit();
 // });
-// process.on("exit", () => stdout.write("Удачи!"));
+// process.on("SIGINT", () => {
+//   console.log("exit");
+
+//   process.exit();
+// });

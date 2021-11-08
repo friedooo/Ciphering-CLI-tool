@@ -1,31 +1,31 @@
-const { rotEncoder, atbashEncoder } = require("./cipherHandler");
+const { rotCoder, atbashEncoder } = require("./cipherHandler");
 
 console.log("encoding rot test");
 console.log(
-  rotEncoder(`This is secret. Message about "_" symbol!`, 1) ===
+  rotCoder(`This is secret. Message about "_" symbol!`, 1) ===
     'Uijt jt tfdsfu. Nfttbhf bcpvu "_" tzncpm!' &&
-    rotEncoder(`This is secret. Message about "_" symbol!`, 4) ===
+    rotCoder(`This is secret. Message about "_" symbol!`, 4) ===
       'Xlmw mw wigvix. Qiwweki efsyx "_" wcqfsp!' &&
-    rotEncoder(`This is secret. Message about "_" symbol!`, 7) ===
+    rotCoder(`This is secret. Message about "_" symbol!`, 7) ===
       'Aopz pz zljyla. Tlzzhnl hivba "_" zftivs!' &&
-    rotEncoder(`This is secret. Message about "_" symbol!`, 8) ===
+    rotCoder(`This is secret. Message about "_" symbol!`, 8) ===
       'Bpqa qa amkzmb. Umaaiom ijwcb "_" agujwt!' &&
-    rotEncoder(`This is secret. Message about "_" symbol!`, 13) ===
+    rotCoder(`This is secret. Message about "_" symbol!`, 13) ===
       'Guvf vf frperg. Zrffntr nobhg "_" flzoby!'
 );
 
 console.log("decoding rot test");
 
 console.log(
-  rotEncoder(`This is secret. Message about "_" symbol!`, -1) ===
+  rotCoder(`This is secret. Message about "_" symbol!`, -1) ===
     'Sghr hr rdbqds. Ldrrzfd zants "_" rxlank!' &&
-    rotEncoder(`This is secret. Message about "_" symbol!`, -4) ===
+    rotCoder(`This is secret. Message about "_" symbol!`, -4) ===
       'Pdeo eo oaynap. Iaoowca wxkqp "_" ouixkh!' &&
-    rotEncoder(`This is secret. Message about "_" symbol!`, -7) ===
+    rotCoder(`This is secret. Message about "_" symbol!`, -7) ===
       'Mabl bl lxvkxm. Fxlltzx tuhnm "_" lrfuhe!' &&
-    rotEncoder(`This is secret. Message about "_" symbol!`, -8) ===
+    rotCoder(`This is secret. Message about "_" symbol!`, -8) ===
       'Lzak ak kwujwl. Ewkksyw stgml "_" kqetgd!' &&
-    rotEncoder(`This is secret. Message about "_" symbol!`, -13) ===
+    rotCoder(`This is secret. Message about "_" symbol!`, -13) ===
       'Guvf vf frperg. Zrffntr nobhg "_" flzoby!'
 );
 

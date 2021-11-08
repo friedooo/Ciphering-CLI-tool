@@ -1,4 +1,4 @@
-module.exports.rotEncoder = (str, shift = 0) => {
+module.exports.rotCoder = (str, shift = 0) => {
   const arr = str.split("");
   const lettersAmount = 26;
   const realShift = Math.abs(shift % lettersAmount);
