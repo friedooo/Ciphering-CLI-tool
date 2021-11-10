@@ -2,52 +2,68 @@ const { stdin, stdout, stderr } = process;
 const fs = require("fs");
 const { pipeline } = require("stream");
 
-require("./encodersTest");
-const { rotCoder } = require("./cipherHandler");
+//require("./encodersTest");
+const { getDataObj } = require("./inputHandlers");
+const { rotCoder, atbashEncoder } = require("./cipherHandler");
 const rotTransform = require("./transformStreams/rotTransform");
+const atbashTransform = require("./transformStreams/atbashTransform");
 
 const readableStream = fs.createReadStream("./files/input.txt", "utf8");
 const writeableStream = fs.createWriteStream("./files/output.txt");
 const transformStream = new rotTransform(rotCoder, 1);
+let arr = [
+  new rotTransform(rotCoder, 1),
+  new rotTransform(rotCoder, 1),
+  new rotTransform(rotCoder, -8),
+  new atbashTransform(atbashEncoder),
+];
 
-pipeline(readableStream, transformStream, writeableStream, (err) => {
-  if (err) {
-    process.stderr.write("pipeline failed", err);
-  } else {
-    process.stdout.write("pipeline success");
+let args = process.argv;
+
+console.log(getDataObj(args));
+
+const algoHandler = (str) => {
+  const algoArr = str.split("-");
+  let executeArr = [];
+
+  algoArr.forEach((cipher) => {
+    switch (cipher) {
+      case "C1":
+        executeArr.push(new rotTransform(rotCoder, 1));
+        break;
+      case "C0":
+        executeArr.push(new rotTransform(rotCoder, -1));
+        break;
+      case "R1":
+        executeArr.push(new rotTransform(rotCoder, 8));
+        break;
+      case "R0":
+        executeArr.push(new rotTransform(rotCoder, -8));
+        break;
+      case "A":
+        executeArr.push(new atbashTransform(atbashEncoder));
+        break;
+      default:
+        console.log(cipher);
+        stderr.write("неправильно задан алгоритм кодирования \n");
+        break;
+    }
+  });
+  return executeArr;
+};
+
+pipeline(
+  readableStream,
+  ...algoHandler(getDataObj(args).algo),
+  writeableStream,
+  (err) => {
+    if (err) {
+      stderr.write("pipeline failed", err);
+    } else {
+      stdout.write("pipeline success");
+    }
   }
-});
-
-// let args = process.argv;
-
-// const checkArgsLength = (arr) => {
-//   if (arr.length === 8) {
-//     console.log("количество аргументов сходится");
-//   }
-// };
-
-// const getDataObj = (arr) => {
-//   let dataObj = {
-//     algo: "",
-//     inputFile: "",
-//     outputFile: "",
-//   };
-
-//   arr.forEach((elem, i) => {
-//     if (elem === "-c" || elem === "--config") {
-//       dataObj.algo = arr[i + 1];
-//     } else if (elem === "-i" || elem === "--input") {
-//       dataObj.inputFile = arr[i + 1];
-//     } else if (elem === "-o" || elem === "--output") {
-//       dataObj.outputFile = arr[i + 1];
-//     }
-//   });
-
-//   return dataObj;
-// };
-
-// checkArgsLength(args);
-// console.log(getDataObj(args));
+);
 
 // console.log(process.stderr.write("что-то пошло не так"));
 
