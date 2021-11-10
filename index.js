@@ -10,14 +10,14 @@ const rotTransform = require("./transformStreams/rotTransform");
 const atbashTransform = require("./transformStreams/atbashTransform");
 const caesarTransform = require("./transformStreams/caesarTransform");
 
-const checkPath = require("./inputCheck/pathCheck");
+let checkPath = require("./inputCheck/pathCheck");
 const readableStream = fs.createReadStream("./files/input.txt", "utf8");
 const writeableStream = fs.createWriteStream("./files/output.txt");
 
 console.log(getDataObj(process.argv));
 
-console.log("Инпут = " + checkPath(getDataObj(process.argv).inputFile));
-console.log("Оутпут = " + checkPath(getDataObj(process.argv).outputFile));
+checkPath(getDataObj(process.argv).inputFile, "input");
+checkPath(getDataObj(process.argv).outputFile, "output");
 
 const algoHandler = (str) => {
   const algoArr = str.split("-");
