@@ -5,22 +5,19 @@ const { pipeline } = require("stream");
 //require("./encodersTest");
 const { getDataObj } = require("./inputHandlers");
 const { rotCoder, atbashEncoder } = require("./cipherHandler");
+
 const rotTransform = require("./transformStreams/rotTransform");
 const atbashTransform = require("./transformStreams/atbashTransform");
+const caesarTransform = require("./transformStreams/caesarTransform");
 
+const checkPath = require("./inputCheck/pathCheck");
 const readableStream = fs.createReadStream("./files/input.txt", "utf8");
 const writeableStream = fs.createWriteStream("./files/output.txt");
-const transformStream = new rotTransform(rotCoder, 1);
-let arr = [
-  new rotTransform(rotCoder, 1),
-  new rotTransform(rotCoder, 1),
-  new rotTransform(rotCoder, -8),
-  new atbashTransform(atbashEncoder),
-];
 
-let args = process.argv;
+console.log(getDataObj(process.argv));
 
-console.log(getDataObj(args));
+console.log("Инпут = " + checkPath(getDataObj(process.argv).inputFile));
+console.log("Оутпут = " + checkPath(getDataObj(process.argv).outputFile));
 
 const algoHandler = (str) => {
   const algoArr = str.split("-");
@@ -29,10 +26,10 @@ const algoHandler = (str) => {
   algoArr.forEach((cipher) => {
     switch (cipher) {
       case "C1":
-        executeArr.push(new rotTransform(rotCoder, 1));
+        executeArr.push(new caesarTransform(rotCoder, 1));
         break;
       case "C0":
-        executeArr.push(new rotTransform(rotCoder, -1));
+        executeArr.push(new caesarTransform(rotCoder, -1));
         break;
       case "R1":
         executeArr.push(new rotTransform(rotCoder, 8));
@@ -54,7 +51,7 @@ const algoHandler = (str) => {
 
 pipeline(
   readableStream,
-  ...algoHandler(getDataObj(args).algo),
+  ...algoHandler(getDataObj(process.argv).algo),
   writeableStream,
   (err) => {
     if (err) {
@@ -67,7 +64,7 @@ pipeline(
 
 // console.log(process.stderr.write("что-то пошло не так"));
 
-// node index -c "C1-C1-R0-A" -i "./input.txt" -o "./output.txt"
+// node index -c "C1-C1-R0-A" -i "./files/input.txt" -o "./files/output.txt"
 
 // stdout.write("Как тебя зовут?\n");
 // stdin.on("data", (data) => {
