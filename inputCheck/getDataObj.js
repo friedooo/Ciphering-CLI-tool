@@ -1,4 +1,4 @@
-const duplicationCheck = require("./inputCheck/duplicationCheck");
+const duplicationCheck = require("./duplicationCheck");
 
 module.exports.getDataObj = (arr) => {
   let dataObj = {
