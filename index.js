@@ -3,7 +3,7 @@ const fs = require("fs");
 const { pipeline } = require("stream");
 
 //require("./encodersTest");
-const { getDataObj } = require("./inputHandlers");
+const { getDataObj } = require("./getDataObj");
 const { rotCoder, atbashEncoder } = require("./cipherHandler");
 
 const rotTransform = require("./transformStreams/rotTransform");
