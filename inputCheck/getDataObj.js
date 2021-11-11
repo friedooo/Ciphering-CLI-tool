@@ -30,7 +30,7 @@ module.exports.getDataObj = (arr) => {
   }
 
   if (dataObj.inputFile === "") {
-    insteadInput();
+    dataObj.algo = insteadInput();
   }
 
   return dataObj;

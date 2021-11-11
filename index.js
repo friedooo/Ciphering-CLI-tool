@@ -22,9 +22,9 @@ pipeline(
   writeableStream,
   (err) => {
     if (err) {
-      stderr.write("pipeline failed \n", err);
+      //stderr.write("pipeline failed \n", err);
     } else {
-      stdout.write("pipeline success \n");
+      //stdout.write("pipeline success \n");
     }
   }
 );
@@ -32,15 +32,3 @@ pipeline(
 // console.log(process.stderr.write("что-то пошло не так"));
 
 // node index -c "C1-C1-R0-A" -i "./files/input.txt" -o "./files/output.txt"
-
-// stdout.write("Как тебя зовут?\n");
-// stdin.on("data", (data) => {
-//   stdout.write("Привет, ");
-//   stdout.write(data);
-//   process.exit();
-// });
-// process.on("SIGINT", () => {
-//   console.log("exit");
-
-//   process.exit();
-// });
