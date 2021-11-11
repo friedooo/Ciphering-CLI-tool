@@ -5,7 +5,6 @@ const { pipeline } = require("stream");
 //require("./encodersTest");
 const { getDataObj } = require("./inputCheck/getDataObj");
 const { createTStreamsArr } = require("./inputCheck/configHandler");
-const checkPath = require("./inputCheck/pathCheck");
 const checkArgsLength = require("./inputCheck/lentghCheck");
 
 const readableStream = fs.createReadStream("./files/input.txt", "utf8");
@@ -16,8 +15,6 @@ const writeableStream = fs.createWriteStream("./files/output.txt", {
 console.log(getDataObj(process.argv));
 
 checkArgsLength(process.argv);
-checkPath(getDataObj(process.argv).inputFile, "input");
-checkPath(getDataObj(process.argv).outputFile, "output");
 
 pipeline(
   readableStream,
@@ -25,9 +22,9 @@ pipeline(
   writeableStream,
   (err) => {
     if (err) {
-      stderr.write("pipeline failed", err);
+      stderr.write("pipeline failed \n", err);
     } else {
-      stdout.write("pipeline success");
+      stdout.write("pipeline success \n");
     }
   }
 );
