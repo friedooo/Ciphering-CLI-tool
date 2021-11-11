@@ -1,7 +1,10 @@
-// const checkArgsLength = (arr) => {
-//   if (arr.length === 8) {
-//     console.log("количество аргументов сходится");
-//   }
-// };
+const { stdin, stdout, stderr } = process;
 
-//checkArgsLength(args);
+module.exports = checkArgsLength = (args) => {
+  if (args.length > 5 && args.length < 9) {
+  } else {
+    stderr.write("неверное количество аргументов");
+    process.exitCode = 1;
+    process.exit();
+  }
+};
