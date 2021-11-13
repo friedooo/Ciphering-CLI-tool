@@ -20,7 +20,7 @@ if (dataObj.outputFile !== "") {
   checkPath(dataObj.outputFile, "output");
 }
 
-let readStream;
+let readableStream;
 let writeableStream = fs.createWriteStream("./files/output.txt", {
   flags: "a",
 });
@@ -28,33 +28,30 @@ let writeableStream = fs.createWriteStream("./files/output.txt", {
 if (dataObj.inputFile === "") {
   insteadInput();
 } else {
-  readStream = fs.createReadStream("./files/input.txt", "utf8");
+  readableStream = fs.createReadStream("./files/input.txt", "utf8");
   doPipeline();
 }
 
 function insteadInput() {
-  let input = "";
   stdout.write("введите текст в терминал \n");
-  stdin.on("data", (data) => {
-    stdout.write(data);
-    input += data;
-  });
-  process.on("SIGINT", async () => {
-    await fs.open("./temp.txt", "w", (err) => {
+  stdin.on("data", async (data) => {
+    fs.open("./temp.txt", "w", (err) => {
       console.log(err);
     });
-    await fs.writeFileSync("./temp.txt", "123", "utf-8", (err) => {
+    await fs.writeFile("./temp.txt", data, "utf-8", (err) => {
       console.log(err);
     });
-    readStream = fs.createReadStream("./temp.txt", "utf8");
+    readableStream = await fs.createReadStream("./temp.txt", "utf8");
+    await readableStream.on("open", () => {
+      console.log("stream opens");
+    });
     await doPipeline();
-    await process.exit();
   });
 }
 
 function doPipeline() {
   pipeline(
-    readStream,
+    readableStream,
     ...createTStreamsArr(getDataObj(process.argv).algo),
     writeableStream,
     (err) => {
