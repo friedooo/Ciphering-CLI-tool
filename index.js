@@ -26,27 +26,12 @@ let writeableStream = fs.createWriteStream("./files/output.txt", {
 });
 
 if (dataObj.inputFile === "") {
-  insteadInput();
+  stdout.write("введите текст в терминал \n");
+  readableStream = stdin;
+  doPipeline();
 } else {
   readableStream = fs.createReadStream("./files/input.txt", "utf8");
   doPipeline();
-}
-
-function insteadInput() {
-  stdout.write("введите текст в терминал \n");
-  stdin.on("data", async (data) => {
-    fs.open("./temp.txt", "w", (err) => {
-      console.log(err);
-    });
-    await fs.writeFile("./temp.txt", data, "utf-8", (err) => {
-      console.log(err);
-    });
-    readableStream = await fs.createReadStream("./temp.txt", "utf8");
-    await readableStream.on("open", () => {
-      console.log("stream opens");
-    });
-    await doPipeline();
-  });
 }
 
 function doPipeline() {
