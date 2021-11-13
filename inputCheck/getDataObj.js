@@ -1,6 +1,4 @@
 const duplicationCheck = require("./duplicationCheck");
-const insteadInput = require("./insteadInput");
-const checkPath = require("../inputCheck/pathCheck");
 
 module.exports.getDataObj = (arr) => {
   let dataObj = {
@@ -21,17 +19,6 @@ module.exports.getDataObj = (arr) => {
       dataObj.outputFile = arr[i + 1];
     }
   });
-
-  if (dataObj.inputFile !== "") {
-    checkPath(dataObj.inputFile, "input");
-  }
-  if (dataObj.outputFile !== "") {
-    checkPath(dataObj.outputFile, "output");
-  }
-
-  if (dataObj.inputFile === "") {
-    dataObj.algo = insteadInput();
-  }
 
   return dataObj;
 };
