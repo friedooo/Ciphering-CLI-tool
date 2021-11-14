@@ -7,8 +7,7 @@ class myError extends Error {
   constructor(message, option) {
     Error.stackTraceLimit = 0;
     super(`${message}`);
-    this.stackTrace
-    
+    this.stackTrace;
   }
 }
 
@@ -19,7 +18,7 @@ class myWritable extends Writable {
   }
 
   _construct(callback) {
-    fs.open(this.filename, 'a', (err, fd) => {
+    fs.open(this.filename, "a", (err, fd) => {
       if (err) {
         callback(err);
       } else {
@@ -41,13 +40,5 @@ class myWritable extends Writable {
     }
   }
 }
-
-// const ws = new myWritable(path.resolve("./files/output.txt"));
-
-
-//   pipeline(stdin, ws, (err) => {
-//     console.log(err);
-//   });
-
 
 module.exports = myWritable;

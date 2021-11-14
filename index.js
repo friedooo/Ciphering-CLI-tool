@@ -3,7 +3,6 @@ const fs = require("fs");
 const { pipeline } = require("stream");
 const path = require("path");
 
-//require("./encodersTest");
 const { getDataObj } = require("./inputCheck/getDataObj");
 const { createTStreamsArr } = require("./inputCheck/configHandler");
 const checkPath = require("./inputCheck/pathCheck");
@@ -22,20 +21,7 @@ if (dataObj.outputFile !== "") {
 }
 
 let readableStream;
-// let writeableStream = fs.createWriteStream("./files/output.txt", {
-//   flags: "a",
-// });
-
 let writeableStream;
-
-// if (dataObj.inputFile === "") {
-//   stdout.write("введите текст в терминал \n");
-//   readableStream = stdin;
-//   doPipeline();
-// } else {
-//   readableStream = myReadable("./files/input.txt");
-//   doPipeline();
-// }
 
 if (dataObj.inputFile === "" && dataObj.outputFile !== "") {
   stdout.write("введите текст в терминал \n");
@@ -73,6 +59,5 @@ function doPipeline() {
   );
 }
 
-// console.log(process.stderr.write("что-то пошло не так"));
-
 // node index -c "C1-C1-R0-A" -i "./files/input.txt" -o "./files/output.txt"
+// node index  -i "./files/input.txt" -o "./files/output.txt" -c "C1-C1-R0-A"

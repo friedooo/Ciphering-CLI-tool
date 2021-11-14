@@ -36,12 +36,4 @@ class myReadable extends Readable {
   }
 }
 
-// const rs = new myReadable(path.resolve("./files/input.txt"));
-// rs.setEncoding("utf-8");
-
-// rs.on("data", (chunk) => {
-//   const chunkStringified = chunk.toString();
-//   console.log(chunkStringified);
-// });
-
 module.exports = myReadable;
