@@ -6,12 +6,10 @@ const path = require("path");
 //require("./encodersTest");
 const { getDataObj } = require("./inputCheck/getDataObj");
 const { createTStreamsArr } = require("./inputCheck/configHandler");
-const checkArgsLength = require("./inputCheck/lentghCheck");
 const checkPath = require("./inputCheck/pathCheck");
 const myWritable = require("./userStreams/myWritable");
 const myReadable = require("./userStreams/myReadable");
 
-checkArgsLength(process.argv);
 console.log(getDataObj(process.argv));
 
 let dataObj = getDataObj(process.argv);
@@ -28,15 +26,35 @@ let readableStream;
 //   flags: "a",
 // });
 
-let writeableStream = new myWritable("./files/output.txt");
+let writeableStream;
 
-if (dataObj.inputFile === "") {
+// if (dataObj.inputFile === "") {
+//   stdout.write("введите текст в терминал \n");
+//   readableStream = stdin;
+//   doPipeline();
+// } else {
+//   readableStream = myReadable("./files/input.txt");
+//   doPipeline();
+// }
+
+if (dataObj.inputFile === "" && dataObj.outputFile !== "") {
   stdout.write("введите текст в терминал \n");
   readableStream = stdin;
+  writeableStream = new myWritable("./files/output.txt");
+  doPipeline();
+} else if (dataObj.outputFile === "" && dataObj.inputFile !== "") {
+  readableStream = new myReadable("./files/input.txt");
+  writeableStream = stdout;
+  doPipeline();
+} else if (dataObj.inputFile === "" && dataObj.outputFile === "") {
+  stdout.write("введите текст в терминал \n");
+  readableStream = stdin;
+  writeableStream = stdout;
   doPipeline();
 } else {
   readableStream = new myReadable("./files/input.txt");
-  readableStream.setEncoding('utf8');
+  readableStream.setEncoding("utf8");
+  writeableStream = new myWritable("./files/output.txt");
   doPipeline();
 }
 
@@ -54,8 +72,6 @@ function doPipeline() {
     }
   );
 }
-
-
 
 // console.log(process.stderr.write("что-то пошло не так"));
 
