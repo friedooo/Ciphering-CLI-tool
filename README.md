@@ -28,15 +28,17 @@ Y - флаг, определяющий что будет происходить:
 ```
 > input.txt
 > This is secret. Message about "_" symbol!
+> 
 > output.txt
 > Myxn xn nbdobm. Tbnnfzb ferlm "_" nhteru!
 
 ```bash
 2. $ node index -c "C1-C0-A-R1-R0-A-R0-R0-C1-A" -i "./files/input.txt" -o "./files/output.txt"
 ```
-> input.txt 
+> **input.txt**
 > This is secret. Message about "_" symbol!
-> output.txt 
+> 
+>**output.txt**
 > Vhgw gw wkmxkv. Ckwwoik onauv "_" wqcnad!
 
 
