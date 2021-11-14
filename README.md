@@ -23,17 +23,16 @@ Y - флаг, определяющий что будет происходить:
 - Кодируются/декодируются только буквы латинского алфавита, остальные символы игнорируются.
 
 **Примеры использования:**
-
+```bash
 1. $ node index -c "C1-C1-R0-A" -i "./files/input.txt" -o "./files/output.txt"
 ```
 > input.txt - This is secret. Message about "_" symbol!
 > output.txt - Myxn xn nbdobm. Tbnnfzb ferlm "_" nhteru!
 
 ```bash
-
 2. $ node index -c "C1-C0-A-R1-R0-A-R0-R0-C1-A" -i "./files/input.txt" -o "./files/output.txt"
 ```
 > input.txt This is secret. Message about "_" symbol!
 > output.txt Vhgw gw wkmxkv. Ckwwoik onauv "_" wqcnad!
 
-```bash
+
