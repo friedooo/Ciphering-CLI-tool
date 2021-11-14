@@ -1,48 +1,43 @@
-const { Writable, Readable, Transform } = require("stream");
+const { Writable, pipeline, Transform } = require("stream");
+const fs = require("fs");
+const { stdin, stdout, stderr } = process;
 
-class CounterReader extends Readable {
-  constructor(opt) {
-    super(opt);
-
-    this._max = 1000;
-    this._index = 0;
+class myWritable extends Writable {
+  constructor(filename) {
+    super();
+    this.filename = filename;
+    fs.open(this.filename, "a", (err, fd) => {
+      if (err) {
+        // callback(err);
+      } else {
+        console.log(fd);
+        this.fd = fd;
+        // callback();
+      }
+    });
   }
 
-  _read() {
-    this._index += 1;
+  // _construct(callback) {
+  //   fs.open(this.filename, "a", (err, fd) => {
+  //     if (err) {
+  //       callback(err);
+  //     } else {
+  //       console.log(fd);
+  //       this.fd = fd;
+  //       callback();
+  //     }
+  //   });
+  // }
 
-    if (this._index > this._max) {
-      this.push(null);
-    } else {
-      const buf = Buffer.from(`${this._index}`, "utf8");
-
-      this.push(buf);
-    }
-  }
-}
-
-class CounterWriter extends Writable {
-  _write(chunk, encoding, callback) {
-    console.log(chunk.toString());
-
-    callback();
-  }
-}
-
-class CounterTransform extends Transform {
-  _transform(chunk, encoding, callback) {
-    try {
-      const resultString = `*${chunk.toString("utf8")}*`;
-
-      callback(null, resultString);
-    } catch (err) {
-      callback(err);
-    }
+  _write(chunk, enc, cb) {
+    fs.write(this.fd, chunk, cb);
   }
 }
 
-const counterReader = new CounterReader({ highWaterMark: 2 });
-const counterWriter = new CounterWriter({ highWaterMark: 2 });
-const counterTransform = new CounterTransform({ highWaterMark: 2 });
+// const ws = new myWritable("./files/output.txt");
 
-counterReader.pipe(counterTransform).pipe(counterWriter);
+// pipeline(stdin, ws, (err) => {
+//   console.log(err);
+// });
+
+module.exports = myWritable;

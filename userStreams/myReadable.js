@@ -1,28 +1,41 @@
-const { Readable } = require("stream");
+const { Readable, pipeline } = require("stream");
+const fs = require("fs");
 
 class myReadable extends Readable {
-  constructor(opt) {
-    super(opt);
+  constructor(filename) {
+    super();
 
-    this._max = 1000;
-    this._index = 0;
+    this.filename = filename;
+    this.fd = null;
   }
 
-  _read() {
-    this._index += 1;
+  _construct(cb) {
+    fs.open(this.filename, (err, fd) => {
+      if (err) {
+        cb(err);
+      } else {
+        this.fd = fd;
+        cb();
+      }
+    });
+  }
 
-    if (this._index > this._max) {
-      this.push(null);
-    } else {
-      const buf = Buffer.from(`${this._index}`, "utf8");
-
-      console.log(`Added: ${this._index}. Could be added? `, this.push(buf));
-    }
+  _read(n) {
+    const buf = Buffer.alloc(n);
+    fs.read(this.fd, buf, 0, n, null, (err, bytesRead) => {
+      if (err) {
+        this.destroy(err);
+      } else {
+        this.push(bytesRead > 0 ? buf.slice(0, bytesRead) : null);
+      }
+    });
   }
 }
 
-const counter = new myReadable({ highWaterMark: 2 });
+const rs = new myReadable("../files/input.txt");
+rs.setEncoding("utf-8");
 
-counter.on("data", (chunk) => {
-  console.log(`Received: ${chunk.toString()}`);
+rs.on("data", (chunk) => {
+  const chunkStringified = chunk.toString();
+  console.log(chunkStringified);
 });

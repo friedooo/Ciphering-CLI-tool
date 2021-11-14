@@ -7,6 +7,7 @@ const { getDataObj } = require("./inputCheck/getDataObj");
 const { createTStreamsArr } = require("./inputCheck/configHandler");
 const checkArgsLength = require("./inputCheck/lentghCheck");
 const checkPath = require("./inputCheck/pathCheck");
+const myWritable = require("./userStreams/myWritable");
 
 checkArgsLength(process.argv);
 console.log(getDataObj(process.argv));
@@ -21,9 +22,11 @@ if (dataObj.outputFile !== "") {
 }
 
 let readableStream;
-let writeableStream = fs.createWriteStream("./files/output.txt", {
-  flags: "a",
-});
+// let writeableStream = fs.createWriteStream("./files/output.txt", {
+//   flags: "a",
+// });
+
+let writeableStream = new myWritable("./files/output.txt");
 
 if (dataObj.inputFile === "") {
   stdout.write("введите текст в терминал \n");
