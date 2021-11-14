@@ -1,25 +1,22 @@
 const { Readable, pipeline } = require("stream");
 const fs = require("fs");
-
+const path = require("path");
 class myReadable extends Readable {
   constructor(filename) {
     super();
-
     this.filename = filename;
     this.fd = null;
   }
-
-  _construct(cb) {
+  _construct(callback) {
     fs.open(this.filename, (err, fd) => {
       if (err) {
-        cb(err);
+        callback(err);
       } else {
         this.fd = fd;
-        cb();
+        callback();
       }
     });
   }
-
   _read(n) {
     const buf = Buffer.alloc(n);
     fs.read(this.fd, buf, 0, n, null, (err, bytesRead) => {
@@ -30,12 +27,21 @@ class myReadable extends Readable {
       }
     });
   }
+  _destroy(err, callback) {
+    if (this.fd) {
+      fs.close(this.fd, (er) => callback(er || err));
+    } else {
+      callback(err);
+    }
+  }
 }
 
-const rs = new myReadable("../files/input.txt");
-rs.setEncoding("utf-8");
+// const rs = new myReadable(path.resolve("./files/input.txt"));
+// rs.setEncoding("utf-8");
 
-rs.on("data", (chunk) => {
-  const chunkStringified = chunk.toString();
-  console.log(chunkStringified);
-});
+// rs.on("data", (chunk) => {
+//   const chunkStringified = chunk.toString();
+//   console.log(chunkStringified);
+// });
+
+module.exports = myReadable;

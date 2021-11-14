@@ -1,6 +1,7 @@
 const { stdin, stdout, stderr } = process;
 const fs = require("fs");
 const { pipeline } = require("stream");
+const path = require("path");
 
 //require("./encodersTest");
 const { getDataObj } = require("./inputCheck/getDataObj");
@@ -8,6 +9,7 @@ const { createTStreamsArr } = require("./inputCheck/configHandler");
 const checkArgsLength = require("./inputCheck/lentghCheck");
 const checkPath = require("./inputCheck/pathCheck");
 const myWritable = require("./userStreams/myWritable");
+const myReadable = require("./userStreams/myReadable");
 
 checkArgsLength(process.argv);
 console.log(getDataObj(process.argv));
@@ -33,7 +35,8 @@ if (dataObj.inputFile === "") {
   readableStream = stdin;
   doPipeline();
 } else {
-  readableStream = fs.createReadStream("./files/input.txt", "utf8");
+  readableStream = new myReadable("./files/input.txt");
+  readableStream.setEncoding('utf8');
   doPipeline();
 }
 
@@ -51,6 +54,8 @@ function doPipeline() {
     }
   );
 }
+
+
 
 // console.log(process.stderr.write("что-то пошло не так"));
 
