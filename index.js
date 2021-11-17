@@ -11,7 +11,7 @@ const myReadable = require("./userStreams/myReadable");
 Error.stackTraceLimit = 5;
 
 try {
-  console.log(getDataObj(process.argv));
+  //console.log(getDataObj(process.argv));
 
   let dataObj = getDataObj(process.argv);
 

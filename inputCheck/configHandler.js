@@ -6,6 +6,7 @@ const rotTransform = require("../transformStreams/rotTransform");
 const atbashTransform = require("../transformStreams/atbashTransform");
 const caesarTransform = require("../transformStreams/caesarTransform");
 const { rotCoder, atbashEncoder } = require("../cipherHandler");
+const wrongAlgoError = require("../errors/wrongAlgoError");
 
 module.exports.createTStreamsArr = (str) => {
   const algoArr = str.split("-");
@@ -31,9 +32,7 @@ module.exports.createTStreamsArr = (str) => {
       default:
         stderr.write("неправильно задан алгоритм кодирования \n");
         console.log(`неправильно указан ${cipher}`);
-        process.exitCode = 1;
-        process.exit();
-        break;
+        throw new wrongAlgoError();
     }
   });
 
