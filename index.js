@@ -26,10 +26,10 @@ let writeableStream;
 if (dataObj.inputFile === "" && dataObj.outputFile !== "") {
   stdout.write("введите текст в терминал \n");
   readableStream = stdin;
-  writeableStream = new myWritable("./files/output.txt");
+  writeableStream = new myWritable(dataObj.outputFile);
   doPipeline();
 } else if (dataObj.outputFile === "" && dataObj.inputFile !== "") {
-  readableStream = new myReadable("./files/input.txt");
+  readableStream = new myReadable(dataObj.inputFile);
   writeableStream = stdout;
   doPipeline();
 } else if (dataObj.inputFile === "" && dataObj.outputFile === "") {
@@ -38,9 +38,9 @@ if (dataObj.inputFile === "" && dataObj.outputFile !== "") {
   writeableStream = stdout;
   doPipeline();
 } else {
-  readableStream = new myReadable("./files/input.txt");
+  readableStream = new myReadable(dataObj.inputFile);
   readableStream.setEncoding("utf8");
-  writeableStream = new myWritable("./files/output.txt");
+  writeableStream = new myWritable(dataObj.outputFile);
   doPipeline();
 }
 
