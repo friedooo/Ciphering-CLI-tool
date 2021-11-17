@@ -1,7 +1,7 @@
 {
   "name": "ciphering-cli-tool",
   "version": "1.0.0",
-  "description": "",
+  "description": "**Это приложение принимает 3 параметра,** они могут быть записаны полностью или как alias:",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/friedooo/Ciphering-CLI-tool/issues"
   },
-  "homepage": "https://github.com/friedooo/Ciphering-CLI-tool#readme"
+  "homepage": "https://github.com/friedooo/Ciphering-CLI-tool#readme",
+  "directories": {
+    "test": "tests"
+  },
+  "devDependencies": {
+    "jest": "^27.3.1"
+  }
 }
