@@ -4,7 +4,8 @@
   "description": "**Это приложение принимает 3 параметра,** они могут быть записаны полностью или как alias:",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "coverage": "jest --coverage"
   },
   "repository": {
     "type": "git",
