@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1637352908188" clover="3.2.0">
-  <project timestamp="1637352908189" name="All files">
-    <metrics statements="201" coveredstatements="71" conditionals="97" coveredconditionals="52" methods="33" coveredmethods="9" elements="331" coveredelements="132" complexity="0" loc="201" ncloc="201" packages="4" files="11" classes="11"/>
+<coverage generated="1637353889840" clover="3.2.0">
+  <project timestamp="1637353889840" name="All files">
+    <metrics statements="204" coveredstatements="74" conditionals="101" coveredconditionals="56" methods="33" coveredmethods="9" elements="338" coveredelements="139" complexity="0" loc="204" ncloc="204" packages="4" files="11" classes="11"/>
     <package name="Ciphering-CLI-tool">
       <metrics statements="87" coveredstatements="48" conditionals="59" coveredconditionals="39" methods="7" coveredmethods="5"/>
       <file name="cipherHandler.js" path="C:\Users\fried\Documents\GitHub\Ciphering-CLI-tool\cipherHandler.js">
@@ -99,7 +99,7 @@
       </file>
     </package>
     <package name="Ciphering-CLI-tool.inputCheck">
-      <metrics statements="55" coveredstatements="23" conditionals="22" coveredconditionals="13" methods="6" coveredmethods="4"/>
+      <metrics statements="58" coveredstatements="26" conditionals="26" coveredconditionals="17" methods="6" coveredmethods="4"/>
       <file name="configHandler.js" path="C:\Users\fried\Documents\GitHub\Ciphering-CLI-tool\inputCheck\configHandler.js">
         <metrics statements="27" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
@@ -132,30 +132,33 @@
       </file>
       <file name="duplicationCheck.js" path="C:\Users\fried\Documents\GitHub\Ciphering-CLI-tool\inputCheck\duplicationCheck.js">
         <metrics statements="7" coveredstatements="7" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="2" count="2" type="stmt"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="6" count="2" type="stmt"/>
         <line num="7" count="2" type="cond" truecount="2" falsecount="0"/>
         <line num="9" count="1" type="stmt"/>
       </file>
       <file name="getDataObj.js" path="C:\Users\fried\Documents\GitHub\Ciphering-CLI-tool\inputCheck\getDataObj.js">
-        <metrics statements="14" coveredstatements="9" conditionals="12" coveredconditionals="10" methods="2" coveredmethods="2"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="10" count="1" type="stmt"/>
-        <line num="11" count="3" type="cond" truecount="4" falsecount="0"/>
-        <line num="12" count="2" type="stmt"/>
-        <line num="13" count="1" type="stmt"/>
-        <line num="14" count="1" type="cond" truecount="3" falsecount="1"/>
-        <line num="15" count="0" type="stmt"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="17" count="1" type="cond" truecount="3" falsecount="1"/>
-        <line num="18" count="0" type="stmt"/>
-        <line num="19" count="0" type="stmt"/>
+        <metrics statements="17" coveredstatements="12" conditionals="16" coveredconditionals="14" methods="2" coveredmethods="2"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="2" count="2" type="stmt"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="11" count="2" type="cond" truecount="4" falsecount="0"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="16" count="3" type="cond" truecount="4" falsecount="0"/>
+        <line num="17" count="2" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="19" count="1" type="cond" truecount="3" falsecount="1"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="22" count="1" type="cond" truecount="3" falsecount="1"/>
         <line num="23" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
       </file>
       <file name="pathCheck.js" path="C:\Users\fried\Documents\GitHub\Ciphering-CLI-tool\inputCheck\pathCheck.js">
         <metrics statements="7" coveredstatements="7" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>

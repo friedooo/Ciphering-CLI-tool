@@ -1,4 +1,5 @@
 const duplicationCheck = require("./duplicationCheck");
+const missConfigError = require("../errors/missConfigError");
 
 module.exports.getDataObj = (arr) => {
   let dataObj = {
@@ -6,6 +7,10 @@ module.exports.getDataObj = (arr) => {
     inputFile: "",
     outputFile: "",
   };
+
+  if (!arr.includes("-c") || !arr.includes("--config")) {
+    throw new missConfigError();
+  }
 
   arr.forEach((elem, i) => {
     if (elem === "-c" || elem === "--config") {
