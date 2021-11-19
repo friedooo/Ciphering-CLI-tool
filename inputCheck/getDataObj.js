@@ -8,7 +8,7 @@ module.exports.getDataObj = (arr) => {
     outputFile: "",
   };
 
-  if (!arr.includes("-c") || !arr.includes("--config")) {
+  if (!arr.includes("-c") && !arr.includes("--config")) {
     throw new missConfigError();
   }
 

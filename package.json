@@ -26,6 +26,6 @@
   },
   "jest": {
     "verbose": true,
-    "collectCoverageFrom" : [ "./*.js", "./inputCheck/*.js", "./userStreams/*.js", "./transformStreams/*.js", "./error/*.js"]
+    "collectCoverageFrom" : [ "./*.js", "./inputCheck/*.js", "./userStreams/*.js", "./transformStreams/*.js", "./errors/*.js"]
   }
 }
