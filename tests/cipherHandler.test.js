@@ -1,5 +1,5 @@
 const { expect } = require("@jest/globals");
-const { rotCoder, atbashEncoder } = require("../../cipherHandler");
+const { rotCoder, atbashEncoder } = require("../cipherHandler");
 
 describe("cipherHandlers testing", () => {
   test("check Rot Encoder", () => {

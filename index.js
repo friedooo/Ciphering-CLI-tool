@@ -11,15 +11,15 @@ const myReadable = require("./userStreams/myReadable");
 Error.stackTraceLimit = 5;
 
 try {
-  //console.log(getDataObj(process.argv));
+  //console.log(process.argv);
 
   let dataObj = getDataObj(process.argv);
 
   if (dataObj.inputFile !== "") {
-    checkPath(dataObj.inputFile, "input");
+    checkPath(dataObj.inputFile);
   }
   if (dataObj.outputFile !== "") {
-    checkPath(dataObj.outputFile, "output");
+    checkPath(dataObj.outputFile);
   }
 
   let readableStream;

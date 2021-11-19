@@ -6,6 +6,7 @@
   "scripts": {
     "test": "jest",
     "coverage": "jest --coverage"
+
   },
   "repository": {
     "type": "git",
@@ -22,5 +23,9 @@
   },
   "devDependencies": {
     "jest": "^27.3.1"
+  },
+  "jest": {
+    "verbose": true,
+    "collectCoverageFrom" : [ "./*.js", "./inputCheck/*.js", "./userStreams/*.js", "./transformStreams/*.js", "./error/*.js"]
   }
 }
