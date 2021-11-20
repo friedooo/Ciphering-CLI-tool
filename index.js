@@ -13,12 +13,9 @@ try {
 
   let dataObj = getDataObj(process.argv);
 
-  if (dataObj.inputFile !== "") {
-    checkPath(dataObj.inputFile);
-  }
-  if (dataObj.outputFile !== "") {
-    checkPath(dataObj.outputFile);
-  }
+  checkPath(dataObj.inputFile);
+
+  checkPath(dataObj.outputFile);
 
   let [rStream, wStream] = selectStreams(dataObj.inputFile, dataObj.outputFile);
 
