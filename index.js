@@ -22,35 +22,39 @@ try {
     checkPath(dataObj.outputFile);
   }
 
-  let readableStream;
-  let writeableStream;
+  function selectStreams(inputFile, outputFile) {
+    let readableStream;
+    let writeableStream;
 
-  if (dataObj.inputFile === "" && dataObj.outputFile !== "") {
-    stdout.write("введите текст в терминал \n");
-    readableStream = stdin;
-    writeableStream = new myWritable(dataObj.outputFile);
-    doPipeline();
-  } else if (dataObj.outputFile === "" && dataObj.inputFile !== "") {
-    readableStream = new myReadable(dataObj.inputFile);
-    writeableStream = stdout;
-    doPipeline();
-  } else if (dataObj.inputFile === "" && dataObj.outputFile === "") {
-    stdout.write("введите текст в терминал \n");
-    readableStream = stdin;
-    writeableStream = stdout;
-    doPipeline();
-  } else {
-    readableStream = new myReadable(dataObj.inputFile);
-    readableStream.setEncoding("utf8");
-    writeableStream = new myWritable(dataObj.outputFile);
-    doPipeline();
+    if (inputFile === "" && outputFile !== "") {
+      stdout.write("введите текст в терминал \n");
+      readableStream = stdin;
+      writeableStream = new myWritable(outputFile);
+    } else if (outputFile === "" && inputFile !== "") {
+      readableStream = new myReadable(inputFile);
+      writeableStream = stdout;
+    } else if (inputFile === "" && outputFile === "") {
+      stdout.write("введите текст в терминал \n");
+      readableStream = stdin;
+      writeableStream = stdout;
+    } else {
+      readableStream = new myReadable(inputFile);
+      readableStream.setEncoding("utf8");
+      writeableStream = new myWritable(outputFile);
+    }
+
+    return [readableStream, writeableStream];
   }
+
+  let [rStream, wStream] = selectStreams(dataObj.inputFile, dataObj.outputFile);
+
+  doPipeline();
 
   function doPipeline() {
     pipeline(
-      readableStream,
+      rStream,
       ...createTStreamsArr(getDataObj(process.argv).algo),
-      writeableStream,
+      wStream,
       (err) => {
         if (err) {
           //stderr.write("pipeline failed \n", err);
