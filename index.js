@@ -1,4 +1,3 @@
-const { stdin, stdout, stderr } = process;
 const fs = require("fs");
 const { pipeline } = require("stream");
 const path = require("path");
@@ -6,8 +5,7 @@ const path = require("path");
 const { getDataObj } = require("./inputCheck/getDataObj");
 const { createTStreamsArr } = require("./inputCheck/configHandler");
 const checkPath = require("./inputCheck/pathCheck");
-const myWritable = require("./userStreams/myWritable");
-const myReadable = require("./userStreams/myReadable");
+const selectStreams = require("./selectStreams");
 Error.stackTraceLimit = 5;
 
 try {
@@ -20,30 +18,6 @@ try {
   }
   if (dataObj.outputFile !== "") {
     checkPath(dataObj.outputFile);
-  }
-
-  function selectStreams(inputFile, outputFile) {
-    let readableStream;
-    let writeableStream;
-
-    if (inputFile === "" && outputFile !== "") {
-      stdout.write("введите текст в терминал \n");
-      readableStream = stdin;
-      writeableStream = new myWritable(outputFile);
-    } else if (outputFile === "" && inputFile !== "") {
-      readableStream = new myReadable(inputFile);
-      writeableStream = stdout;
-    } else if (inputFile === "" && outputFile === "") {
-      stdout.write("введите текст в терминал \n");
-      readableStream = stdin;
-      writeableStream = stdout;
-    } else {
-      readableStream = new myReadable(inputFile);
-      readableStream.setEncoding("utf8");
-      writeableStream = new myWritable(outputFile);
-    }
-
-    return [readableStream, writeableStream];
   }
 
   let [rStream, wStream] = selectStreams(dataObj.inputFile, dataObj.outputFile);
