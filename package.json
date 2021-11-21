@@ -1,0 +1,31 @@
+{
+  "name": "ciphering-cli-tool",
+  "version": "1.0.0",
+  "description": "**Это приложение принимает 3 параметра,** они могут быть записаны полностью или как alias:",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "coverage": "jest --coverage"
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/friedooo/Ciphering-CLI-tool.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/friedooo/Ciphering-CLI-tool/issues"
+  },
+  "homepage": "https://github.com/friedooo/Ciphering-CLI-tool#readme",
+  "directories": {
+    "test": "tests"
+  },
+  "devDependencies": {
+    "jest": "^27.3.1"
+  },
+  "jest": {
+    "verbose": true,
+    "collectCoverageFrom" : [ "./*.js", "./inputCheck/*.js", "./userStreams/*.js", "./transformStreams/*.js", "./errors/*.js"]
+  }
+}
