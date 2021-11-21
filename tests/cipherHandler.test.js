@@ -2,7 +2,7 @@ const { expect } = require("@jest/globals");
 const { rotCoder, atbashEncoder } = require("../cipherHandler");
 
 describe("cipherHandlers testing", () => {
-  test("check Rot Encoder", () => {
+  test("test Rot Encoder", () => {
     const checkStr = `This is secret. Message about "_" symbol!`;
 
     expect(rotCoder(checkStr, 1)).toBe(
@@ -19,7 +19,7 @@ describe("cipherHandlers testing", () => {
     );
   });
 
-  test("check Rot Decoder", () => {
+  test("test Rot Decoder", () => {
     const checkStr = `This is secret. Message about "_" symbol!`;
 
     expect(rotCoder(checkStr, -1)).toBe(
@@ -36,7 +36,7 @@ describe("cipherHandlers testing", () => {
     );
   });
 
-  test("check Atbash", () => {
+  test("test Atbash", () => {
     expect(atbashEncoder(`This is secret. Message about "_" symbol!`)).toBe(
       `Gsrh rh hvxivg. Nvhhztv zylfg "_" hbnylo!`
     );

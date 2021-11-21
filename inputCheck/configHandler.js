@@ -30,8 +30,6 @@ module.exports.createTStreamsArr = (str) => {
         executeArr.push(new atbashTransform(atbashEncoder));
         break;
       default:
-        stderr.write("неправильно задан алгоритм кодирования \n");
-        console.log(`неправильно указан ${cipher}`);
         throw new wrongAlgoError();
     }
   });
